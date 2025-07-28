@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="p-8 bg-gray-100 min-h-screen text-gray-800">
+    <h1 class="text-4xl font-bold mb-6">Characters — Page {{ currentPage }}</h1>
+    {% include 'components/_nav_links.html.twig' %}
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for character in characters %}
+            <div class="bg-white rounded shadow p-4 text-center hover:shadow-md transition">
+                <img src="{{ character.image }}" alt="{{ character.name }}" class="w-24 h-24 rounded-full mx-auto mb-2">
+                <h2 class="text-lg font-semibold">{{ character.name }}</h2>
+                <p class="text-sm text-gray-500">{{ character.species }} — {{ character.status }}</p>
+                <a href="/character/{{ character.id }}" class="mt-2 inline-block text-blue-600 hover:underline text-sm">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if info.pages > 1 %}
+        <div class="mt-8 flex flex-wrap justify-center gap-2">
+            {% for i in 1..info.pages %}
+                <a href="{{ path('characters_list', { page: i }) }}"
+                class="px-4 py-2 rounded border text-sm font-medium
+                {% if i == currentPage %}
+                    bg-blue-600 text-white border-blue-600 cursor-default
+                {% else %}
+                    bg-white text-gray-800 border-gray-300 hover:bg-gray-100
+                {% endif %}">
+                    {{ i }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

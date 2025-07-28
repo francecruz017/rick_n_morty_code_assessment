@@ -1,0 +1,15 @@
+<header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <a href="{{ path('homepage') }}" class="text-xl font-bold text-blue-600">Pickle Rick API Explorer</a>
+            <nav class="flex gap-4 text-sm md:text-base">
+                <a href="{{ path('characters_list', { page: 1 }) }}"
+                   class="text-gray-700 hover:text-blue-600 transition">Characters</a>
+                <a href="{{ path('locations_list', { page: 1 }) }}"
+                   class="text-gray-700 hover:text-green-600 transition">Locations</a>
+                <a href="{{ path('episodes_list', { page: 1 }) }}"
+                   class="text-gray-700 hover:text-purple-600 transition">Episodes</a>
+            </nav>
+        </div>
+    </div>
+</header>

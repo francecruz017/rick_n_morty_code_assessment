@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="p-8 bg-gray-100 min-h-screen text-gray-800">
+    <h1 class="text-4xl font-bold mb-6">Episodes — Page {{ currentPage }}</h1>
+    {% include 'components/_nav_links.html.twig' %}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for episode in episodes %}
+            <div class="bg-white rounded shadow p-4 hover:shadow-md transition">
+                <h2 class="text-lg font-semibold">{{ episode.name }}</h2>
+                <p class="text-sm text-gray-500">{{ episode.episode }} — {{ episode.air_date }}</p>
+                <a href="/episode/{{ episode.id }}" class="mt-2 inline-block text-blue-600 hover:underline text-sm">View Characters</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if info.pages > 1 %}
+        <div class="mt-8 flex flex-wrap justify-center gap-2">
+            {% for i in 1..info.pages %}
+                <a href="{{ path('episodes_list', { page: i }) }}"
+                   class="px-4 py-2 rounded border text-sm font-medium
+                   {% if i == currentPage %}
+                       bg-purple-600 text-white border-purple-600 cursor-default
+                   {% else %}
+                       bg-white text-gray-800 border-gray-300 hover:bg-gray-100
+                   {% endif %}">
+                    {{ i }}
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
