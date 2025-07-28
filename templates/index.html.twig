@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="min-h-screen bg-gray-100 text-gray-800 p-8">
+    <h1 class="text-4xl font-bold mb-6">Pickle Rick API Explorer</h1>
+    <div class="grid grid-cols-1 gap-6">
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-semibold mb-2">Characters by Dimension</h2>
+            <p>Try a known dimension like <code class="bg-gray-200 px-1 py-0.5 rounded">Dimension C-137</code></p>
+            <a href="/dimension/Dimension%20C-137" class="text-blue-600 underline">View Characters in Dimension C-137</a>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-semibold mb-2">Characters by Location</h2>
+            <p>Example location: <code class="bg-gray-200 px-1 py-0.5 rounded">Citadel of Ricks</code></p>
+            <a href="/location/Citadel%20of%20Ricks" class="text-blue-600 underline">View Characters at Citadel of Ricks</a>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-semibold mb-2">Characters by Episode</h2>
+            <p>Try an episode ID like <code class="bg-gray-200 px-1 py-0.5 rounded">1</code> or name <code class="bg-gray-200 px-1 py-0.5 rounded">Pilot</code></p>
+            <a href="/episode/1" class="text-blue-600 underline mr-4">Episode 1</a>
+            <a href="/episode/Pilot" class="text-blue-600 underline">Episode "Pilot"</a>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-xl font-semibold mb-2">Character Detail</h2>
+            <p>Fetch full info of a character by ID.</p>
+            <a href="/character/1" class="text-blue-600 underline">View Character #1</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Characters at "{{ location }}"{% endblock %}
+{% block body %}
+  <div class="max-w-2xl mx-auto py-8">
+    <h1 class="text-2xl font-bold mb-6 text-blue-600">Characters at "{{ location }}"</h1>
+    {% include 'components/_nav_links.html.twig' %}
+    {% if characters is empty %}
+      <p class="italic text-gray-500">No characters found at this location.</p>
+    {% else %}
+      <ul class="space-y-4">
+        {% for char in characters %}
+          <li class="bg-white rounded-lg shadow p-4 flex flex-col sm:flex-row sm:items-center justify-between">
+            <div>
+              <strong class="text-lg text-blue-700">{{ char.name }}</strong>
+              <span class="ml-2 text-gray-700">{{ char.species }}, {{ char.status }}</span>
+              <span class="block text-xs text-gray-500">(Origin: {{ char.origin.name }})</span>
+            </div>
+            <a href="{{ path('app_character_detail', {id: char.id}) }}"
+               class="mt-2 sm:mt-0 inline-block text-sm px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-700 transition">
+              View Details
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endblock %}

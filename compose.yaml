@@ -1,19 +1,4 @@
 services:
-  database:
-    image: postgres:16
-    container_name: pickle_pg
-    environment:
-      POSTGRES_USER: ricky_admin
-      POSTGRES_PASSWORD: adminpass
-      POSTGRES_DB: pickle_jar
-    ports:
-      - "5433:5432"
-    volumes:
-      - database_data:/var/lib/postgresql/data
-      - ./docker/postgres-init:/docker-entrypoint-initdb.d
-    networks:
-      - app
-
   symfony:
     build:
       context: .
@@ -21,8 +6,6 @@ services:
     container_name: symfony_app
     volumes:
       - .:/var/www/html
-    depends_on:
-      - database
     networks:
       - app
 
@@ -38,9 +21,6 @@ services:
       - symfony
     networks:
       - app
-
-volumes:
-  database_data:
 
 networks:
   app:
