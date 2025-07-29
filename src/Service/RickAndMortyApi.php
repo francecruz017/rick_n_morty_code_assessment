@@ -183,6 +183,12 @@ class RickAndMortyApi
                 $item->expiresAfter(3600);
                 return $this->http->request('GET', self::BASE_URL . "/character/{$id}")->toArray(false);
             });
+
+            if (isset($charData['error'])) {
+                $this->logger->warning('Character not found from API', ['character_id' => $id]);
+                return ['character' => null, 'dimension' => null];
+            }
+
         } catch (\Throwable $e) {
             $this->logger->error('Error fetching character detail', ['character_id' => $id, 'exception' => $e]);
             return ['character' => null, 'dimension' => null];

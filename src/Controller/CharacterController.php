@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\RickAndMortyApi;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CharacterController extends AbstractController
 {
@@ -28,12 +29,16 @@ class CharacterController extends AbstractController
         ]);
     }
 
-    #[Route('/character/{id}', name: 'character_detail')]
-    public function detail(int $id): Response
+    #[Route('/character/{id}', name: 'character_show')]
+    public function show(int $id): Response
     {
         $result = $this->api->getCharacterDetail($id);
 
-        return $this->render('characters/detail.html.twig', [
+        if ($result['character'] === null) {
+            throw new NotFoundHttpException("Character not found.");
+        }
+
+        return $this->render('characters/show.html.twig', [
             'character' => $result['character'],
             'dimension' => $result['dimension'],
         ]);

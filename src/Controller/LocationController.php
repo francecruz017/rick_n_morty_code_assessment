@@ -29,22 +29,22 @@ class LocationController extends AbstractController
     }
 
     #[Route('/location/{locationName}', name: 'location_characters')]
-    public function charactersByLocation(string $locationName): Response
+    public function showCharactersByLocation(string $locationName): Response
     {
         $result = $this->api->getCharactersByLocation($locationName);
 
-        return $this->render('locations/characters.html.twig', [
+        return $this->render('locations/show.html.twig', [
             'location' => $result['location'],
             'characters' => $result['characters'],
         ]);
     }
 
     #[Route('/dimension/{dimensionName}', name: 'dimension_characters')]
-    public function charactersByDimension(string $dimensionName): Response
+    public function showCharactersByDimension(string $dimensionName): Response
     {
         $characters = $this->api->getCharactersByDimension($dimensionName);
 
-        return $this->render('dimensions/characters.html.twig', [
+        return $this->render('dimensions/show.html.twig', [
             'dimension' => $dimensionName,
             'characters' => $characters,
         ]);

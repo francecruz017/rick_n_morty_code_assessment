@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\RickAndMortyApi;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EpisodeController extends AbstractController
 {
@@ -28,14 +29,15 @@ class EpisodeController extends AbstractController
         ]);
     }
 
-    #[Route('/episode/{episodeIdOrName}', name: 'episode_characters')]
-    public function charactersInEpisode(string $episodeIdOrName): Response
+    #[Route('/episode/{episodeIdOrName}', name: 'episode_show')]
+    public function show(string $episodeIdOrName): Response
     {
         $result = $this->api->getCharactersByEpisode($episodeIdOrName);
 
-        return $this->render('episodes/characters.html.twig', [
+        return $this->render('episodes/show.html.twig', [
             'episode' => $result['episode'],
             'characters' => $result['characters'],
+            'episodeIdOrName' => $episodeIdOrName,
         ]);
     }
 }
