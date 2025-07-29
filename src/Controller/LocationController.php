@@ -19,7 +19,7 @@ class LocationController extends AbstractController
     #[Route('/locations/{page}', name: 'locations_list', requirements: ['page' => '\d+'], defaults: ['page' => 1])]
     public function list(int $page): Response
     {
-        $data = $this->api->getAllWithPagination('location', $page);
+        $data = $this->api->getLocations($page);
 
         return $this->render('locations/index.html.twig', [
             'locations' => $data['results'],

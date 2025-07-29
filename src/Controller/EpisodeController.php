@@ -19,7 +19,7 @@ class EpisodeController extends AbstractController
     #[Route('/episodes/{page}', name: 'episodes_list', requirements: ['page' => '\d+'], defaults: ['page' => 1])]
     public function list(int $page): Response
     {
-        $data = $this->api->getAllWithPagination('episode', $page);
+        $data = $this->api->getEpisodes($page);
 
         return $this->render('episodes/index.html.twig', [
             'episodes' => $data['results'],

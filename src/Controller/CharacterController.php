@@ -19,7 +19,7 @@ class CharacterController extends AbstractController
     #[Route('/characters/{page}', name: 'characters_list', requirements: ['page' => '\d+'], defaults: ['page' => 1])]
     public function list(int $page): Response
     {
-        $data = $this->api->getAllWithPagination('character', $page);
+        $data = $this->api->getCharacters($page);
 
         return $this->render('characters/index.html.twig', [
             'characters' => $data['results'],

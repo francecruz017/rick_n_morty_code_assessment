@@ -22,11 +22,11 @@
           <li>
             <span class="font-semibold text-gray-800">Appears in Episodes:</span>
             <ul class="list-disc list-inside text-base mt-1">
-              {% for epUrl in character.episode %}
-                {% set epId = epUrl|split('/')|last %}
+              {% for ep in character.episodes %}
+                {% set epId = ep.url|split('/')|last %}
                 <li>
                   <a href="{{ path('episode_characters', {episodeIdOrName: epId}) }}"
-                     class="text-blue-600 hover:underline">Episode {{ epId }}</a>
+                    class="text-blue-600 hover:underline">Episode {{ epId }}</a>
                 </li>
               {% endfor %}
             </ul>
