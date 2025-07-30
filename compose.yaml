@@ -6,6 +6,7 @@ services:
     container_name: symfony_app
     volumes:
       - .:/var/www/html
+      - var_data:/var/www/html/var
     networks:
       - app
 
@@ -21,6 +22,9 @@ services:
       - symfony
     networks:
       - app
+
+volumes:
+  var_data:
 
 networks:
   app:

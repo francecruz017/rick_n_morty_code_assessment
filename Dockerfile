@@ -14,12 +14,9 @@ RUN composer install --no-interaction --prefer-dist --no-scripts
 RUN chown -R www-data:www-data var \
     && chmod -R 775 var
 
-# TODO 
-# docker exec -it symfony_app bash
-# rm -rf var/cache/*
-# mkdir -p var/cache/prod var/cache/dev
-# chown -R www-data:www-data var
-# chmod -R 775 var
+RUN mkdir -p var/cache/prod var/cache/dev \
+    && chown -R www-data:www-data var \
+    && chmod -R 775 var
 
 EXPOSE 9000
 
